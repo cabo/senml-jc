@@ -1,6 +1,6 @@
 require 'json'
 
-files = Dir["json/*.json"].map{ _1.gsub("json/", "").gsub(".json", "")}
+files = Dir["json/*.json"].map{ |x| x.gsub("json/", "").gsub(".json", "")}
 
 def sz(fn)
   File.stat(fn).size
