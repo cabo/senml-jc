@@ -31,8 +31,8 @@ informative:
 
 --- abstract
 
-This short position paper illustrates energy use considerations for
-data formats used in networks to support green-focused steering decisions.
+This concise position paper illustrates energy use considerations for
+data formats used in networks to support green-focused steering decisions for various Internet stakeholders.
 
 --- middle
 
@@ -102,7 +102,7 @@ While many dualities exist between JSON-encoded data and CBOR-encoded data, ther
 
 The LoRa configuration used in the following analysis is based on using SX1262 as the leaf node and SX1302 + SX1250 as the LoRa concentrator.
 
-The energy consumption calculations in the following tables are based on the following additional assumptions:
+The energy consumption calculations in the following tables are based on the following additional premise:
 
 * The leaf node is based on the SX1262, with DC-DC enabled
 * Spreading Factor is 7
@@ -119,9 +119,9 @@ The energy consumption calculations in the following tables are based on the fol
 * No LoRa concentrator RX calculations are provided because a LoRa concentrator is always receiving.
 * LoRa concentrator TX calculations are based on the SX1250 LoRa front-end with the SX1302 baseband processor.
 
-These assumptions are intended to be best-case scenarios wherever possible. Regardless, most impacts scale proportionally with encoding size reduction.
+These premise are selected in the context of this contribution to reflect best-case scenarios wherever possible. Regardless, most impacts scale proportionally with encoding size reduction.
 
-Due to channel utilization, there are secondary energy effects that are caused by larger data encodings: As network utilisation increases, there there is more channel contention, this causes more re-transmissions, which are more expensive. It also causes the requirement for additional concentrators, which consume more resources and more energy.
+Due to channel utilization, there are secondary energy consumption impacts that are caused by larger data encodings: as network utilisation increases, there there is more channel contention causing more re-transmissions due to congestion control mechanisms, which in practice are typically more expensive. The need for additional concentrators is a related consecutive requirement that can cause again additional resources or results in more energy consumption.
 
 LoRa leaf-node Receive Energy(mJ)
 
@@ -137,9 +137,9 @@ LoRa concentrator Transmit Energy(mJ)
 
 ## Indirect Impacts of higher energy use.
 
-LoRa nodes are frequently arranged to transmit data periodically, for example every 10 minutes. Suppose there is a coin-cell powered LoRa node that is designed to report a message containing either a JSON structure or a CBOR structure each time it wakes up. LoRa has a maximum packet size of 255 bytes. Two examples are given below; they are based on example 2 and example 3 data.
+LoRa nodes are frequently arranged to transmit data periodically, for example, every 10 minutes. This contribution is based on the assumption of using a coin-cell powered LoRa node that is designed to report a message containing either a JSON structure or a CBOR structure each time it wakes up. LoRa has a maximum packet size of 255 bytes. Two detailed examples are illustrated below; they are based on example 2 and example 3 data.
 
-For this example, the assumption is reports every 10 minutes with a CR2032 coin cell battery; 3V @ 220mAh, which is 2376J. It is assumed that the primary source of energy consumption is the LoRa radio, so no other energy consumption is used. This forms a baseline. All real-world applications will be worse than the figures quoted in these examples.
+Another assumption in the example used is that the interval of one report every 10 minutes utilizes a CR2032 coin cell battery; 3V @ 220mAh, which is 2376J. A consecutive assumption is that the primary source of energy consumption is the LoRa radio and no other significant energy consumption occurs. This forms the baseline for this contribution. These are optimistic assumptions. All real-world applications will be worse than the figures quoted in the examples.
 
 ### LoRa reports with example 2 data
 
