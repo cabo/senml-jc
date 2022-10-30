@@ -46,7 +46,7 @@ data formats used in networks to support green-focused steering decisions for va
 
 For encodings of predominantly non-text content, binary encodings should be preferred over textual encodings. ASCII representations of binary or numeric data are substantially larger than binary representations of the same data. While binary representations are often simpler to use in the design and debugging of protocols and documents, ultimately Internet Standards are for end users {{RFC8890}}. While implementers often prefer a certain simplicity and focus on the implementation quality of experience, end users do not care what is easier for design and debugging. They care about responsiveness, battery life, product lifetime, and ecological impact.
 
-Binary encodings outperform textual representations across each of these metrics. They are simpler to decode, more energy efficient and consume less bandwidth. Therefore, Internet Standards should favour binary encodings over textual representations in any scenario where the content is not predominantly text. Compression should be an additional preference where it does not unduly raise the complexity.
+Binary encodings outperform textual representations across each of these metrics. They are simpler to decode, more energy efficient and consume less bandwidth. Therefore, Internet Standards should favor binary encodings over textual representations in any scenario where the content is not predominantly text. Compression should be an additional preference where it does not unduly raise the complexity.
 
 # Comparison of Encodings
 
@@ -94,7 +94,7 @@ The differences between encodings are shown below. Where UINT(arg) is shown in t
 | Array        | 2 + count-1 | UINT(count)               |
 {: #json-cbor-sizes title="Comparing Encoding Sizes"}
 
-This does not include any whitespace or separators in JSON (commas, colons, array and map designators) and other characters to enhance 'human-readable' representations.
+This does not include any blank space or separators in JSON (commas, colons, array and map designators) and other characters to enhance 'human-readable' representations.
 
 When choosing an encoding, binary encodings should be selected for any data structure that is not primarily composed of textual data. Using a rather crude simplification, messages can be separated in their 'scaffolding' and the 'value payload' they transport. In most cases, the proportion of scaffold and values is another selection decision.
 
@@ -139,7 +139,7 @@ The energy consumption calculations in the following tables are based on the fol
 
 These premise are selected in the context of this contribution to reflect best-case scenarios wherever possible. Regardless, most impacts scale proportionally with encoding size reduction.
 
-Due to channel utilization, there are secondary energy consumption impacts that are caused by larger data encodings: as network utilisation increases, there there is more channel contention causing more re-transmissions due to congestion control mechanisms, which in practice are typically more expensive. The need for additional concentrators is a related consecutive requirement that can cause again additional resources or results in more energy consumption.
+Due to channel utilization, there are secondary energy consumption impacts that are caused by larger data encodings: as network utilization increases, there there is more channel contention causing more re-transmissions due to congestion control mechanisms, which in practice are typically more expensive. The need for additional concentrators is a related consecutive requirement that can cause again additional resources or results in more energy consumption.
 
 {::include lora-rx-leaf.md}
 {: #lora-rx-leaf title="LoRa leaf-node Receive Energy (mJ)"}
@@ -154,11 +154,13 @@ Due to channel utilization, there are secondary energy consumption impacts that 
 
 LoRa nodes are frequently arranged to transmit data periodically, for example, every 10 minutes. This contribution is based on the assumption of using a coin-cell powered LoRa node that is designed to report a message containing either a JSON structure or a CBOR structure each time it wakes up. LoRa has a maximum packet size of 255 bytes. Two detailed examples are illustrated below; they are based on example 2 and example 3 data.
 
-Another assumption in the example used is that the interval of one report every 10 minutes utilizes a CR2032 coin cell battery; 3V @ 220mAh, which is 2376J. A consecutive assumption is that the primary source of energy consumption is the LoRa radio and no other significant energy consumption occurs. This forms the baseline for this contribution. These are optimistic assumptions. All real-world applications will be worse than the figures quoted in the examples.
+<!-- (* 3 .220 3600)2376.0 -->
+
+Another assumption in the example used is that the interval of one report every 10 minutes utilizes a CR2032 coin cell battery; 3V @ 220 mAh, which is 2376 J. A consecutive assumption is that the primary source of energy consumption is the LoRa radio and no other significant energy consumption occurs. This forms the baseline for this contribution. These are optimistic assumptions. All real-world applications will be worse than the figures quoted in the examples.
 
 ### LoRa Reports with Data from Example 2
 
-Each report is 115 bytes for JSON or 82 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 30.1mJ for JSON or 22.5mJ for CBOR.
+Each report is 115 bytes for JSON or 82 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 30.1 mJ for JSON or 22.5 mJ for CBOR.
 
 |                      |  JSON |   CBOR |
 |----------------------|-------|--------|
@@ -172,7 +174,7 @@ This means that batteries or devices using CBOR to send example 2 data last 33% 
 
 ### LoRa reports with data from example 3
 
-Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 74mJ for JSON or 46.9mJ for CBOR.
+Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 74 mJ for JSON or 46.9 mJ for CBOR.
 
 |                      |  JSON |  CBOR |
 |----------------------|-------|-------|
@@ -184,6 +186,8 @@ Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node
 
 
 This means that batteries or devices using CBOR to send example 3 data last 58% longer than those using JSON, contributing to less e-waste and battery waste.
+
+--- back
 
 # Appendix: Lora Calculations
 
@@ -219,6 +223,9 @@ Where:
 * N_symbol_header = 20 with explicit header, 0 with implicit header
 * CR is 1, 2, 3 or 4 for respective coding rates 4/5, 4/6, 4/7 or 4/8
 
-These calculations are derived from the SX1262 datasheet, section
+These calculations are derived from the SX1262 datasheet, Section
 6.1.4 {{SX1262}}.
 
+
+<!--  LocalWords:  concentrator baseband concentrators LoRa
+ -->
