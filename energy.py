@@ -69,7 +69,7 @@ def size2mJ(rows, energy_fn):
         r = {'example':row['example']}
         for k in ['json','cbor','half']:
             r[k] = energy_fn(int(row[k])) * 1000
-        r['red'] = (r['json']-r['half'])/r['json'] * 100
+        r['red'] = (r['json']-r['cbor'])/r['json'] * 100
         e_rows.append(r)
     return e_rows
 
