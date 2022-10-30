@@ -58,7 +58,7 @@ However, the scaling of energy use across all protocols is similar. The differen
 
 # Impact of encoding based on data-type
 
-Each data type has a different encoding impact.
+Different data types can have different encoding impacts.
 
 NOTE: CBOR encodes integers using the following rules:
 
@@ -86,16 +86,17 @@ float64 | 3 to 23 | 9 |
 Date | 12 | 2 + UINT(days since 1970)
 Array | 2 + count-1  | UINT(count)
 
-This does not include any whitespace or separators in JSON (commas, colons, array and map designators).
+This does not include any whitespace or separators in JSON (commas, colons, array and map designators) and other characters to enhance 'human-readable' representations.
 
-When choosing an encoding, binary encodings should be selected for any data structure that is not primarily composed of textual data. 
+When choosing an encoding, binary encodings should be selected for any data structure that is not primarily composed of textual data. Using a rather crude simplification, messages can be separated in their 'scaffolding' and the 'value payload' they transport. In most cases, the proportion of scaffold and values is another selection decision.
 
 ## Example preferences
 
 While many dualities exist between JSON-encoded data and CBOR-encoded data, there are some key examples where CBOR structures should clearly be used instead of their JSON counterparts.
 
-* COSE should always be prefered over JOSE
-* TODO: Add more!
+* COSE should always be preferred over JOSE
+* CBOR should be used for conveyance, while 'human-readability' should be off-loaded to higher layer tools
+* CBOR should always be used where stable semantics exist that are designed with build-in extensibility
 
 # LoRa energy consumption
 
