@@ -228,6 +228,8 @@ In direct comparison, the typical overhead introduced by a 'human-readable' repr
 A generic approach of establishing binary message transfer supported with tooling for human readability will provide resource savings and therefore constitutes a paramount near term goal.
 Future evaluation and large scale measurements are required to underpin and establish this as a principal approach.
 
+Internet Standards should use binary encoding as the primary choice. 'Human-readable' encodings should only be used where the encoded content is predominantly human readable text.
+
 --- back
 
 # Lora Calculations
