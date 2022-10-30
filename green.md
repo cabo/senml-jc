@@ -209,10 +209,8 @@ In practice, non-trivial amounts of JSON need a tool to look at the
 data just as a tool is required to look at binary data.
 To strengthen the argument here, the findings documented need to be
 augmented with data from other parties and additional examples,
-preferably including real-world onboard power consumption
-measurements.
-
-[^hmm]: What is meant here?
+preferably including real-world measurements of power consumed by 
+transmission, reception, encoding and decoding of messages.
 
 On the other hand, it should be clear from first principles that a
 more concise message encoding provides advantages in transmission and
