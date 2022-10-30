@@ -189,6 +189,8 @@ This means that batteries or devices using CBOR to send example 3 data last 58% 
 
 # Conclusion
 
+In direct comprison, the typical overhead introduced via a 'human-readable' representation in contrast to a binary representation have been presented as significant in this concise contribution. On the one hand, the findings documented need to be augmented with additional parties and additional examples including real-world onboard power consumption measurements to be deterministically validated. On the other hand, the correlation resource (especially power) consumption with message transmition encoding paints a clear picture, today. A generic approach of establishing binary message transfer supported with tooling for human readabilty is a paramount near term goal. Future evaluation and large scale measurements are required to underpan and establish this a a principle approach.
+
 --- back
 
 # Lora Calculations
