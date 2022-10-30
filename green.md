@@ -9,14 +9,18 @@ pi:
   compact: 'yes'
   subcompact: 'no'
   rfcedstyle: 'yes'
-  private: yes
+  private: 'yes'
 wg: IAB e-impact Workshop
 date: 2022-10-30
 title: >
   CBOR is Greener than JSON
 author:
 - name: Brendan Moran
+  organization: Arm Limited
+  email: brendan.moran.ietf@gmail.com
 - name: Henk Birkholz
+  organization: Fraunhofer SIT
+  email: henk.birkholz@sit.fraunhofer.de
 - name: Carsten Bormann
   org: Universität Bremen TZI
   street: Postfach 330440
