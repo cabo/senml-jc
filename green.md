@@ -167,4 +167,40 @@ Total Days | 222 | 351
 
 This means that batteries or devices using CBOR to send example 3 data last 58% longer than those using JSON, contributing to less e-waste and battery waste.
 
+# Appendix: Lora Calculations
+
+LoRa power consumption is calculated with the following equations:
+
+~~~ math
+Energy = I \times V \times ToA
+~~~
+
+Where:
+
+* I is the current consumed by the transceiver
+* V is the voltage applied to the transceiver
+
+~~~ math
+ToA = \frac{2^{SF}}{BW}\times N_{symbol}
+~~~
+
+Where: 
+
+* SF: Spreading Factor (5 to 12)
+* BW: Bandwidth (in Hz)
+* ToA: the Time on Air in seconds
+* Nsymbol: number of symbols
+
+~~~ math
+N_{symbol} = N_{symbol\_preamble}+4.25+8+\left \lceil \frac{max\left ( 8\times N_{byte\_payload}+N_{bit\_CRC}-4\times SF+8+N_{symbol\_header},0 \right )}{4\times SF} \right \rceil\times(CR+4)
+~~~
+
+Where:
+
+* N_bit_CRC = 16 if CRC activated, 0 if not
+* N_symbol_header = 20 with explicit header, 0 with implicit header
+* CR is 1, 2, 3 or 4 for respective coding rates 4/5, 4/6, 4/7 or 4/8
+
+These calculations are derived from the SX1262 datasheet, section 6.1.4. See here: [https://www.semtech.com/products/wireless-rf/lora-connect/sx1262]
+
 
