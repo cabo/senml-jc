@@ -7,9 +7,7 @@ def lora_toa(n_payload_total, BW=125e3, SF=7):
     # print('===================')
     # print('Payload: {}'.format(n_payload_total))
     toa = 0
-
     DR = BW/(2**SF)
-
     symbols = 0
 
     while n_payload_total > 0:
@@ -35,10 +33,6 @@ def lora_toa(n_payload_total, BW=125e3, SF=7):
     # print('Symbols: {}'.format(symbols))
 
     return toa
-
-
-    # return e
-
 
 def energy_lora_rx(n_payload_total, SF=7):
     '''SX1262 868MHz, 3.3V, DC-DC enabled, LoRa mode'''
@@ -79,7 +73,6 @@ def energy_concentrator_tx(n_payload_total, SF=7):
     # print('Energy: {}'.format(e))
     return e
 
-
 def size2mJ(rows, energy_fn):
     e_rows = []
     for row in rows:
@@ -90,9 +83,9 @@ def size2mJ(rows, energy_fn):
         e_rows.append(r)
     return e_rows
 
-
 @click.command()
-@click.option('-t', '--type', 'energy_type', type=click.Choice(['leaf-rx', 'leaf-tx', 'concentrator-tx'], case_sensitive=False),
+@click.option('-t', '--type', 'energy_type',
+    type=click.Choice(['leaf-rx', 'leaf-tx', 'concentrator-tx'], case_sensitive=False),
     default='leaf-rx')
 def main(energy_type):
     rows=[]
@@ -115,7 +108,6 @@ def main(energy_type):
         print('{example:>20} | {json:5.1f} | {cbor:5.1f} | {half:5.1f} | {red:2.0f} %'.format(
             **row
         ))
-
 
 if __name__=='__main__':
     main()
