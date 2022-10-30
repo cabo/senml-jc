@@ -31,23 +31,22 @@ informative:
 
 --- abstract
 
-This short position paper looks at energy use considerations for
-data formats used in networks.
+This short position paper illustrates energy use considerations for
+data formats used in networks to support green-focused steering decisions.
 
 --- middle
 
-
 # Introduction
 
-For encodings of predominantly non-text content, binary encodings should be preferred over textual encodings. ASCII representations of binary or numeric data are substantially larger than binary representations of the same data. While binary representations are often simpler to use in the design and debugging of protocols and documents, internet standards are for end users {{RFC8890}}. End users do not care what is easier for design and debugging. They care about responsiveness, battery life, product lifetime, and ecological impact.
+For encodings of predominantly non-text content, binary encodings should be preferred over textual encodings. ASCII representations of binary or numeric data are substantially larger than binary representations of the same data. While binary representations are often simpler to use in the design and debugging of protocols and documents, ultimately Internet Standards are for end users {{RFC8890}}. While implementers often prefer a certain simplicity and focus on the implementation quality of experience, end users do not care what is easier for design and debugging. They care about responsiveness, battery life, product lifetime, and ecological impact.
 
-Binary encodings outperform textual representations across each of these metrics. They are simpler to decode, more energy efficient and consume less bandwidth. Therefore, internet standards should prefer binary encodings over textual representations in any scenario where the content is not predominantly text. Compression should be preferred where it does not unduly raise the complexity.
+Binary encodings outperform textual representations across each of these metrics. They are simpler to decode, more energy efficient and consume less bandwidth. Therefore, Internet Standards should favour binary encodings over textual representations in any scenario where the content is not predominantly text. Compression should be an additional preference where it does not unduly raise the complexity.
 
 # Comparison of Encodings
 
-To demonstrate the energy saved through the use of binary encodings and, thus, the ecological impact of encodings, JSON energy consumption is compared to CBOR energy consumption across a range of examples. For this comparison, transmission over LoRa is used. LoRa is a widely deployed IoT networking protocol that is attractive due to its low power consumption, ease of deployment, and simple software stack.
+To demonstrate systemic energy savings through the use of binary encodings and, thus, the ecological impact of encodings, JSON energy consumption is compared to CBOR energy consumption across a range of examples. For the comparison illustrated in this document, transmission over LoRa is used. LoRa is a widely deployed IoT WAN networking protocol that is attractive due to its low power consumption, ease of deployment, and simple software stack.
 
-Other protocols that should be considered include:
+There are numerous related protocols that deserve similar attention, but are not covered in this contribution:
 
 * 6LoWPAN
 * Bluetooth Mesh
@@ -55,7 +54,7 @@ Other protocols that should be considered include:
 * WiFi
 * Ethernet
 
-However, the scaling of energy use across all protocols is similar. The differences generally arise from packet overhead and maximum payload size. As a result, analysis based on a single IoT networking protocol should provide adequate information for analyzing the impact of encoding on energy consumption and througput.
+However, the scaling of energy use across all protocols is similar. The differences generally arise from packet overhead and maximum payload size. As a result, analysis based on a single IoT networking protocol provides adequate reference information for analyzing the impact of encoding on energy consumption and throughput.
 
 # Impact of encoding based on data-type
 
