@@ -63,7 +63,7 @@ Each data type has a different encoding impact.
 
 NOTE: CBOR encodes integers using the following rules:
 
-Positive Integer value | encoding size
+Unsigned Integer value | encoding size
 ---|---
 0-23 | 1
 24-255 | 2
@@ -71,21 +71,21 @@ Positive Integer value | encoding size
 65536 - 2^32-1 | 5
 2^32 - 2^64-1 | 9
 
-The differences between encodings are shown below. Where POSINT(arg) is shown in the CBOR column, the encoding size above is used based on the value of arg.
+The differences between encodings are shown below. Where UINT(arg) is shown in the CBOR column, the encoding size above is used based on the value of arg.
 
 Type | JSON Size | CBOR Size
 ---|---|---
-string | strlen+2 | strlen + POSINT(strlen)
-octets (hex) | size * 2 | size + POSINT(size)
-octets (b64) | size * 4/3 | size + POSINT(size)
+string | strlen+2 | strlen + UINT(strlen)
+octets (hex) | size * 2 | size + UINT(size)
+octets (b64) | size * 4/3 | size + UINT(size)
 int8 | 1 to 3 | 1 or 2 |
 int16 | 1 to 5 | 3 |
 int32 | 1 to 10 | 5 |
 int64 | 1 to 19 | 9 |
 float32 | 3 to 16 | 5 |
 float64 | 3 to 23 | 9 |
-Date | 12 | 2 + POSINT(days since 1970)
-Array | 2 + count-1  | POSINT(count)
+Date | 12 | 2 + UINT(days since 1970)
+Array | 2 + count-1  | UINT(count)
 
 This does not include any whitespace or separators in JSON (commas, colons, array and map designators).
 
