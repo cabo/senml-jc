@@ -123,15 +123,15 @@ These premise are selected in the context of this contribution to reflect best-c
 
 Due to channel utilization, there are secondary energy consumption impacts that are caused by larger data encodings: as network utilisation increases, there there is more channel contention causing more re-transmissions due to congestion control mechanisms, which in practice are typically more expensive. The need for additional concentrators is a related consecutive requirement that can cause again additional resources or results in more energy consumption.
 
-LoRa leaf-node Receive Energy(mJ)
+LoRa leaf-node Receive Energy (mJ)
 
 {::include lora-rx-leaf.md}
 
-LoRa leaf-node Transmit Energy(mJ)
+LoRa leaf-node Transmit Energy (mJ)
 
 {::include lora-tx-leaf.md}
 
-LoRa concentrator Transmit Energy(mJ)
+LoRa concentrator Transmit Energy (mJ)
 
 {::include lora-tx-concentrator.md}
 
