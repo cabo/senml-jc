@@ -183,6 +183,7 @@ This means that batteries or devices using CBOR to send example 2 data last 33% 
 ### LoRa reports with data from example 3
 
 Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 74 mJ for JSON or 46.9 mJ for CBOR.
+This example is interesting because the CBOR payload fits in one LoRa packet, while the JSON payload requires two. This means that the CBOR is both smaller overall and has a lower modulation overhead.
 
 |                      |  JSON |  CBOR |
 |----------------------|-------|-------|
