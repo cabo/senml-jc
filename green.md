@@ -9,7 +9,7 @@ pi:
   compact: 'yes'
   subcompact: 'no'
   rfcedstyle: 'yes'
-  private: yes
+  private: 'yes'
 wg: IAB e-impact Workshop
 date: 2022-10-30
 title: >
