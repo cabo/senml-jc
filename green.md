@@ -28,6 +28,8 @@ author:
 
 informative:
   RFC8890:
+  SX1262:
+    target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
 
 --- abstract
 
@@ -98,6 +100,14 @@ While many dualities exist between JSON-encoded data and CBOR-encoded data, ther
 * CBOR should be used for conveyance, while 'human-readability' should be off-loaded to higher layer tools
 * CBOR should always be used where stable semantics exist that are designed with build-in extensibility
 
+# Example Data Structures
+
+Example data structures are provided from {{RFC8428}}. The examples are encoded in both JSON and CBOR. In addition, the examples are provided in half-size float (float16) CBOR. The float16 values are not used for the "reduction" calculations.
+
+A summary of encoding sizes is provided below:
+
+{::include table.md}
+
 # LoRa energy consumption
 
 The LoRa configuration used in the following analysis is based on using SX1262 as the leaf node and SX1302 + SX1250 as the LoRa concentrator.
@@ -115,7 +125,7 @@ The energy consumption calculations in the following tables are based on the fol
 * Receiver is also 3.3V
 * Large payloads are split into packets with no additional framing
 * RX Waiting time is ignored
-* Calculations are based on the SX1262 datasheet, Section 6.1.4: LoRa® Time-on-Air. See [https://www.semtech.com/products/wireless-rf/lora-connect/sx1262]
+* Calculations are based on the SX1262 datasheet, Section 6.1.4: LoRa® Time-on-Air. See {{SX1262}}
 * No LoRa concentrator RX calculations are provided because a LoRa concentrator is always receiving.
 * LoRa concentrator TX calculations are based on the SX1250 LoRa front-end with the SX1302 baseband processor.
 
@@ -201,6 +211,5 @@ Where:
 * N_symbol_header = 20 with explicit header, 0 with implicit header
 * CR is 1, 2, 3 or 4 for respective coding rates 4/5, 4/6, 4/7 or 4/8
 
-These calculations are derived from the SX1262 datasheet, section 6.1.4. See here: [https://www.semtech.com/products/wireless-rf/lora-connect/sx1262]
-
+These calculations are derived from the SX1262 datasheet, section 6.1.4. See here: {{SX1262}}
 
