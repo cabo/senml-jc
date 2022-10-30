@@ -48,7 +48,11 @@ data formats used in networks to support green-focused steering decisions for va
 
 # Introduction
 
-For encodings of predominantly non-text content, binary encodings should be preferred over textual encodings. ASCII representations of binary or numeric data are substantially larger than binary representations of the same data. While binary representations are often simpler to use in the design and debugging of protocols and documents, ultimately Internet Standards are for end users {{RFC8890}}. While implementers often prefer a certain simplicity and focus on the implementation quality of experience, end users do not care what is easier for design and debugging. They care about responsiveness, battery life, product lifetime, and ecological impact.
+For encodings of predominantly non-text content, binary encodings should be preferred over textual encodings. ASCII representations of binary or numeric data are substantially larger than binary representations of the same data. While binary representations are often simpler to use in the design and debugging of protocols and documents, ultimately Internet Standards are for end users {{RFC8890}}. While implementers often prefer a certain simplicity and focus on the implementation quality of experience, end users do not care what is easier for design and debugging. End users, people who own or operate IoT devices, particularly those that are powered by primary cells, care that:
+
+* The battery is easily replaceable OR the battery will last the full service life of the device.
+* The device has a small ecological footprint (this may not be true for all end users, but it is a growing concern and the topic of this IAB workshop)
+* The device completes any tasks it is given in a "reasonable" time.
 
 Binary encodings outperform textual representations across each of these metrics. They are simpler to decode, more energy efficient and consume less bandwidth. Therefore, Internet Standards should favor binary encodings over textual representations in any scenario where the content is not predominantly text. Compression should be an additional preference where it does not unduly raise the complexity.
 
@@ -193,7 +197,11 @@ This means that batteries or devices using CBOR to send example 3 data last 58% 
 
 # Conclusion
 
+<<<<<<< Updated upstream
 In direct comparison, the typical overhead introduced by a 'human-readable' representation in contrast to a binary representation for message transport has been presented as significant in this concise contribution. On the one hand, the findings documented need to be augmented with additional data from other parties and additional examples including real-world onboard power consumption measurements in order to be deterministically validated. On the other hand, the correlated resource consumption of message computation and transmission (especially with respect to power consumption) paints a clear picture, today. A generic approach of establishing binary message transfer supported will improve average resource savings and therefore constitutes a paramount target. In combination with tooling for human readabilty this target is achievable addressing both implementers and end users. Future evaluations and large scale measurements are required to underpan and establish this principle approach.
+=======
+In direct comprison, the typical overhead introduced via a 'human-readable' representation in contrast to a binary representation has been presented as significant in this short contribution. On the one hand, the findings documented need to be augmented with additional parties and additional examples including real-world onboard power consumption measurements to be deterministically validated. On the other hand, the correlation of resource (especially power) consumption with message encoding paints a clear picture, today. A generic approach of establishing binary message transfer supported with tooling for human readabilty is a paramount near term goal. Future evaluation and large scale measurements are required to underpin and establish this as a principle approach.
+>>>>>>> Stashed changes
 
 --- back
 
