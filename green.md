@@ -27,9 +27,12 @@ author:
   email: cabo@tzi.org
 
 informative:
+  RFC8428:
   RFC8890:
   SX1262:
     target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
+    title: Product Details — SX1262
+
 
 --- abstract
 
