@@ -196,9 +196,39 @@ This example is interesting because the CBOR payload fits in one LoRa packet, wh
 
 This means that batteries or devices using CBOR to send example 3 data last 58% longer than those using JSON, contributing to less e-waste and battery waste.
 
+# Discussion
+
+The findings reported here provide arguments for using concise binary
+data representations in place of traditional text-based data formats.
+
+Whether these arguments are considered compelling depends on how
+compelling the counterarguments are.  Many developers consider
+JSON-based communication to be easier to debug than concise binary
+communication.
+In practice, non-trivial amounts of JSON need a tool to look at the
+data just as a tool is required to look at binary data.
+To strengthen the argument here, the findings documented need to be
+augmented with data from other parties and additional examples,
+preferably including real-world onboard power consumption
+measurements.
+
+[^hmm]: What is meant here?
+
+On the other hand, it should be clear from first principles that a
+more concise message encoding provides advantages in transmission and
+reception power spent.
+The examples here provide a rough indication of how significant these
+advantages can be in messages that may be typical for IoT
+environments.
+Larger corpora of such messages need to be collected to obtain a
+quantitatively stronger statement.
+
 # Conclusion
 
-In direct comparison, the typical overhead introduced by a 'human-readable' representation in contrast to a binary representation for message transport has been presented as significant in this short contribution. On the one hand, the findings documented need to be augmented with additional data from other parties and additional examples including real-world onboard power consumption measurements in order to be deterministically validated. On the other hand, the correlated resource consumption of message computation and transmission (especially with respect to power consumption) paints a clear picture, today. A generic approach of establishing binary message transfer supported will improve average resource savings and therefore constitutes a paramount target. In combination with tooling for human readabilty this target is achievable addressing both implementers and end users. Future evaluations and large scale measurements are required to underpan and establish this principle approach.
+In direct comparison, the typical overhead introduced by a 'human-readable' representation in contrast to a binary representation for message transport has been presented as significant in this short contribution.
+
+A generic approach of establishing binary message transfer supported with tooling for human readability will provide resource savings and therefore constitutes a paramount near term goal.
+Future evaluation and large scale measurements are required to underpin and establish this as a principal approach.
 
 --- back
 
@@ -241,4 +271,6 @@ These calculations are derived from the SX1262 datasheet, Section
 
 
 <!--  LocalWords:  concentrator baseband concentrators LoRa
+ -->
+<!--  LocalWords:  deterministically
  -->
