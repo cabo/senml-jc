@@ -41,6 +41,8 @@ def lora_toa(n_payload_total, BW=125e3, SF=7):
 
 
 def energy_lora_rx(n_payload_total, SF=7):
+    '''SX1262 868MHz, 3.3V, DC-DC enabled, LoRa mode'''
+
     Volts = 3.3
     Amps = 0.0046
     P = Volts * Amps
@@ -63,6 +65,21 @@ def energy_lora_tx(n_payload_total, SF=7):
     # print('Energy: {}'.format(e))
     return e
 
+def energy_concentrator_tx(n_payload_total, SF=7):
+    '''SX1250 868MHz, +14dBm & SX1302'''
+    Volts = 3.3
+    SX1250_Amps = 0.090
+    SX1302_Amps = 0.0072+0.0014
+    Amps = SX1250_Amps + SX1302_Amps
+    P = Volts * Amps
+
+    ToA = lora_toa(n_payload_total, SF=SF)
+    e = ToA * P
+    # print('Power: {}'.format(P))
+    # print('Energy: {}'.format(e))
+    return e
+
+
 def size2mJ(rows, energy_fn):
     e_rows = []
     for row in rows:
@@ -75,7 +92,7 @@ def size2mJ(rows, energy_fn):
 
 
 @click.command()
-@click.option('-t', '--type', 'energy_type', type=click.Choice(['leaf-rx', 'leaf-tx'], case_sensitive=False),
+@click.option('-t', '--type', 'energy_type', type=click.Choice(['leaf-rx', 'leaf-tx', 'concentrator-tx'], case_sensitive=False),
     default='leaf-rx')
 def main(energy_type):
     rows=[]
@@ -89,7 +106,11 @@ def main(energy_type):
 
     # print('LoRa leaf-node Receive Energy(mJ)')
     print('{:>20} | {:>5} | {:>5} | {:>5} | {}'.format(*header))
-    lora_rows = size2mJ(rows,{'leaf-rx':energy_lora_rx, 'leaf-tx':energy_lora_tx}[energy_type])
+    lora_rows = size2mJ(rows,{
+        'leaf-rx':energy_lora_rx,
+        'leaf-tx':energy_lora_tx,
+        'concentrator-tx':energy_concentrator_tx,
+        }[energy_type])
     for row in lora_rows:
         print('{example:>20} | {json:5.1f} | {cbor:5.1f} | {half:5.1f} | {red:2.0f} %'.format(
             **row
