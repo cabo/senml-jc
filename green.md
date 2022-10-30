@@ -189,7 +189,7 @@ This means that batteries or devices using CBOR to send example 3 data last 58% 
 
 --- back
 
-# Appendix: Lora Calculations
+# Lora Calculations
 
 LoRa power consumption is calculated with the following equations:
 
