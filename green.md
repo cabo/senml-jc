@@ -63,7 +63,7 @@ Each data type has a different encoding impact.
 
 NOTE: CBOR encodes integers using the following rules:
 
-Positive Integer value | encoding size
+Unsigned Integer value | encoding size
 ---|---
 0-23 | 1
 24-255 | 2
