@@ -28,6 +28,7 @@ author:
 
 informative:
   RFC8428:
+  RFC9193:
   RFC8890:
   SX1262:
     target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
@@ -67,29 +68,31 @@ Different data types can have different encoding impacts.
 
 NOTE: CBOR encodes integers using the following rules:
 
-Unsigned Integer value | encoding size
----|---
-0-23 | 1
-24-255 | 2
-256 - 65535 | 3
-65536 - 2^32-1 | 5
-2^32 - 2^64-1 | 9
+| Unsigned Integer value             | encoding size |
+| ---                                |          ---: |
+| 0 .. 23                            |             1 |
+| 24 .. 255                          |             2 |
+| 256 .. 65535                       |             3 |
+| 65536 .. 2<sup>32</sup>-1          |             5 |
+| 2<sup>32</sup> .. 2<sup>64</sup>-1 |             9 |
+{: #cbor-integer-sizes title="CBOR Encoding Sizes for Unsigned Integers"}
 
 The differences between encodings are shown below. Where UINT(arg) is shown in the CBOR column, the encoding size above is used based on the value of arg.
 
-Type | JSON Size | CBOR Size
----|---|---
-string | strlen+2 | strlen + UINT(strlen)
-octets (hex) | size * 2 | size + UINT(size)
-octets (b64) | size * 4/3 | size + UINT(size)
-int8 | 1 to 3 | 1 or 2 |
-int16 | 1 to 5 | 3 |
-int32 | 1 to 10 | 5 |
-int64 | 1 to 19 | 9 |
-float32 | 3 to 16 | 5 |
-float64 | 3 to 23 | 9 |
-Date | 12 | 2 + UINT(days since 1970)
-Array | 2 + count-1  | UINT(count)
+| Type         | JSON Size   | CBOR Size                 |
+| ---          | ---         | ---                       |
+| string       | strlen+2    | strlen + UINT(strlen)     |
+| octets (hex) | size * 2    | size + UINT(size)         |
+| octets (b64) | size * 4/3  | size + UINT(size)         |
+| int8         | 1 to 3      | 1 or 2                    |
+| int16        | 1 to 5      | 3                         |
+| int32        | 1 to 10     | 5                         |
+| int64        | 1 to 19     | 9                         |
+| float32      | 3 to 16     | 5                         |
+| float64      | 3 to 23     | 9                         |
+| Date         | 12          | 2 + UINT(days since 1970) |
+| Array        | 2 + count-1 | UINT(count)               |
+{: #json-cbor-sizes title="Comparing Encoding Sizes"}
 
 This does not include any whitespace or separators in JSON (commas, colons, array and map designators) and other characters to enhance 'human-readable' representations.
 
@@ -105,11 +108,13 @@ While many dualities exist between JSON-encoded data and CBOR-encoded data, ther
 
 # Example Data Structures
 
-Example data structures are provided from {{RFC8428}}. The examples are encoded in both JSON and CBOR. In addition, the examples are provided in half-size float (float16) CBOR. The float16 values are not used for the "reduction" calculations.
+Example data structures are provided from {{RFC8428}} (ex_n_), as well
+as {{RFC9193}} and weather data (fmi). The examples are encoded in both JSON and CBOR. In addition, the examples are provided in half-size float (float16) CBOR. The float16 values are not used for the "reduction" calculations.
 
-A summary of encoding sizes is provided below:
+A summary of encoding sizes is provided in {{encoding-sizes}}.
 
 {::include table.md}
+{: #encoding-sizes title="Summary of Encoding Sizes for Example Data"}
 
 # LoRa energy consumption
 
@@ -136,17 +141,14 @@ These premise are selected in the context of this contribution to reflect best-c
 
 Due to channel utilization, there are secondary energy consumption impacts that are caused by larger data encodings: as network utilisation increases, there there is more channel contention causing more re-transmissions due to congestion control mechanisms, which in practice are typically more expensive. The need for additional concentrators is a related consecutive requirement that can cause again additional resources or results in more energy consumption.
 
-LoRa leaf-node Receive Energy (mJ)
-
 {::include lora-rx-leaf.md}
-
-LoRa leaf-node Transmit Energy (mJ)
+{: #lora-rx-leaf title="LoRa leaf-node Receive Energy (mJ)"}
 
 {::include lora-tx-leaf.md}
-
-LoRa concentrator Transmit Energy (mJ)
+{: #lora-tx-leaf title="LoRa leaf-node Transmit Energy (mJ)"}
 
 {::include lora-tx-concentrator.md}
+{: #lora-tx-concentrator title="LoRa concentrator Transmit Energy (mJ)"}
 
 ## Indirect Impacts of higher energy use.
 
@@ -154,29 +156,32 @@ LoRa nodes are frequently arranged to transmit data periodically, for example, e
 
 Another assumption in the example used is that the interval of one report every 10 minutes utilizes a CR2032 coin cell battery; 3V @ 220mAh, which is 2376J. A consecutive assumption is that the primary source of energy consumption is the LoRa radio and no other significant energy consumption occurs. This forms the baseline for this contribution. These are optimistic assumptions. All real-world applications will be worse than the figures quoted in the examples.
 
-### LoRa reports with example 2 data
+### LoRa Reports with Data from Example 2
 
 Each report is 115 bytes for JSON or 82 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 30.1mJ for JSON or 22.5mJ for CBOR.
 
-| JSON | CBOR
----|---|---
-Data Size | 115 | 82
-Transmit Energy | 30.1mJ | 22.5mJ
-Total Messages | 78936 | 105600
-Total Days | 548 | 733
+|                      |  JSON |   CBOR |
+|----------------------|-------|--------|
+| Data Size            |   115 |     82 |
+| Transmit Energy (mJ) |  30.1 |   22.5 |
+| Total Messages       | 78936 | 105600 |
+| Total Days           |   548 |    733 |
+{: #example-2-report title="Reports with Data from Example 2"}
 
 This means that batteries or devices using CBOR to send example 2 data last 33% longer than those using JSON, contributing to less e-waste and battery waste.
 
-### LoRa reports with example 3 data
+### LoRa reports with data from example 3
 
 Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 74mJ for JSON or 46.9mJ for CBOR.
 
-| JSON | CBOR
----|---|---
-Data Size | 293 | 195
-Transmit Energy | 74mJ | 46.9mJ
-Total Messages | 32108 | 50660
-Total Days | 222 | 351
+|                      |  JSON |  CBOR |
+|----------------------|-------|-------|
+| Data Size            |   293 |   195 |
+| Transmit Energy (mJ) |    74 |  46.9 |
+| Total Messages       | 32108 | 50660 |
+| Total Days           |   222 |   351 |
+{: #example-3-report title="Reports With Data from Example 3"}
+
 
 This means that batteries or devices using CBOR to send example 3 data last 58% longer than those using JSON, contributing to less e-waste and battery waste.
 
@@ -214,5 +219,6 @@ Where:
 * N_symbol_header = 20 with explicit header, 0 with implicit header
 * CR is 1, 2, 3 or 4 for respective coding rates 4/5, 4/6, 4/7 or 4/8
 
-These calculations are derived from the SX1262 datasheet, section 6.1.4. See here: {{SX1262}}
+These calculations are derived from the SX1262 datasheet, section
+6.1.4 {{SX1262}}.
 
