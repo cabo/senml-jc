@@ -3,7 +3,7 @@ FILENAMES = $(JSON_SOURCES:json/%=%)
 CBOR_HALF_RESULTS = $(FILENAMES:%.json=cbor-half/%.cbor)
 CBOR_RESULTS = $(FILENAMES:%.json=cbor/%.cbor)
 
-all: table.md lora-rx-leaf.md lora-tx-leaf.md
+all: table.md lora-rx-leaf.md lora-tx-leaf.md lora-tx-concentrator.md
 
 table.md: results
 	ruby mktable.rb > $@.new
@@ -15,6 +15,9 @@ lora-rx-leaf.md: table.md energy.py
 
 lora-tx-leaf.md: table.md energy.py
 	cat $< | python3 energy.py -t leaf-tx > $@
+
+lora-tx-concentrator.md: table.md energy.py
+	cat $< | python3 energy.py -t concentrator-tx > $@
 
 results: $(CBOR_RESULTS) $(CBOR_HALF_RESULTS)
 
