@@ -187,6 +187,8 @@ Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node
 
 This means that batteries or devices using CBOR to send example 3 data last 58% longer than those using JSON, contributing to less e-waste and battery waste.
 
+# Conclusion
+
 --- back
 
 # Lora Calculations
