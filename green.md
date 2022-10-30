@@ -7,8 +7,8 @@ pi:
   symrefs: 'yes'
   sortrefs: 'yes'
   compact: 'yes'
-  subcompact: 'no'
-  rfcedstyle: 'yes'
+  subcompact: 'yes'
+#  rfcedstyle: 'yes'
   private: 'yes'
 wg: IAB e-impact Workshop
 date: 2022-10-30
@@ -41,7 +41,7 @@ informative:
 
 --- abstract
 
-This concise position paper illustrates energy use considerations for
+This short position paper illustrates energy use considerations for
 data formats used in networks to support green-focused steering decisions for various Internet stakeholders.
 
 --- middle
@@ -171,7 +171,7 @@ Another assumption in the example used is that the interval of one report every 
 Each report is 115 bytes for JSON or 82 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 30.1 mJ for JSON or 22.5 mJ for CBOR.
 
 |                      |  JSON |   CBOR |
-|----------------------|-------|--------|
+| -------------------- | ----: | -----: |
 | Data Size            |   115 |     82 |
 | Transmit Energy (mJ) |  30.1 |   22.5 |
 | Total Messages       | 78936 | 105600 |
@@ -186,7 +186,7 @@ Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node
 This example is interesting because the CBOR payload fits in one LoRa packet, while the JSON payload requires two. This means that the CBOR is both smaller overall and has a lower modulation overhead.
 
 |                      |  JSON |  CBOR |
-|----------------------|-------|-------|
+| -------------------- | ----: | ----: |
 | Data Size            |   293 |   195 |
 | Transmit Energy (mJ) |    74 |  46.9 |
 | Total Messages       | 32108 | 50660 |
@@ -198,7 +198,7 @@ This means that batteries or devices using CBOR to send example 3 data last 58% 
 
 # Conclusion
 
-In direct comparison, the typical overhead introduced by a 'human-readable' representation in contrast to a binary representation for message transport has been presented as significant in this concise contribution. On the one hand, the findings documented need to be augmented with additional data from other parties and additional examples including real-world onboard power consumption measurements in order to be deterministically validated. On the other hand, the correlated resource consumption of message computation and transmission (especially with respect to power consumption) paints a clear picture, today. A generic approach of establishing binary message transfer supported will improve average resource savings and therefore constitutes a paramount target. In combination with tooling for human readabilty this target is achievable addressing both implementers and end users. Future evaluations and large scale measurements are required to underpan and establish this principle approach.
+In direct comparison, the typical overhead introduced by a 'human-readable' representation in contrast to a binary representation for message transport has been presented as significant in this short contribution. On the one hand, the findings documented need to be augmented with additional data from other parties and additional examples including real-world onboard power consumption measurements in order to be deterministically validated. On the other hand, the correlated resource consumption of message computation and transmission (especially with respect to power consumption) paints a clear picture, today. A generic approach of establishing binary message transfer supported will improve average resource savings and therefore constitutes a paramount target. In combination with tooling for human readabilty this target is achievable addressing both implementers and end users. Future evaluations and large scale measurements are required to underpan and establish this principle approach.
 
 --- back
 
