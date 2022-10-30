@@ -123,15 +123,15 @@ These assumptions are intended to be best-case scenarios wherever possible. Rega
 
 Due to channel utilization, there are secondary energy effects that are caused by larger data encodings: As network utilisation increases, there there is more channel contention, this causes more re-transmissions, which are more expensive. It also causes the requirement for additional concentrators, which consume more resources and more energy.
 
-LoRa leaf-node Receive Energy(mJ)
+LoRa leaf-node Receive Energy (mJ)
 
 {::include lora-rx-leaf.md}
 
-LoRa leaf-node Transmit Energy(mJ)
+LoRa leaf-node Transmit Energy (mJ)
 
 {::include lora-tx-leaf.md}
 
-LoRa concentrator Transmit Energy(mJ)
+LoRa concentrator Transmit Energy (mJ)
 
 {::include lora-tx-concentrator.md}
 
