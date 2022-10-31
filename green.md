@@ -4,7 +4,7 @@ ipr: none
 
 cat: info
 wg: IAB e-impact Workshop
-date: 2022-10-30
+date: 2022-10-31
 title: >
   CBOR is Greener than JSON
 author:
@@ -29,17 +29,21 @@ informative:
   RFC9193:
   RFC8890:
   SX1250:
-    target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1250
+    target: https://www.semtech.com/products/wireless-rf/lora-core/sx1250
     title: Product Details — SX1250
+    date: false
   SX1262:
     target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
     title: Product Details — SX1262
+    date: false
   SX1302:
     target: https://www.semtech.com/products/wireless-rf/lora-core/sx1302
     title: Product Details — SX1302
+    date: false
   LoRa:
     target: https://www.semtech.com/lora/what-is-lora
     title: What Is LoRa®?
+    date: false
 
 
 --- abstract
