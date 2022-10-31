@@ -27,9 +27,15 @@ informative:
   RFC8428:
   RFC9193:
   RFC8890:
+  SX1250:
+    target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1250
+    title: Product Details — SX1250
   SX1262:
     target: https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
     title: Product Details — SX1262
+  SX1302:
+    target: https://www.semtech.com/products/wireless-rf/lora-core/sx1302
+    title: Product Details — SX1302
   LoRa:
     target: https://www.semtech.com/lora/what-is-lora
     title: What Is LoRa®?
@@ -137,6 +143,7 @@ is used based on the value of arg.
 | float64      | 3 to 23             | 9                         |
 | Date         | 12                  | 2 + UINT(days since 1970) |
 | Array        | 2 + count-1         | UINT(count)               |
+| Map          | 2 + 2*count - 1     | UINT(count)               |
 {: #json-cbor-sizes title="Comparing Encoding Sizes"}
 
 # Example Data Structures
@@ -175,6 +182,10 @@ The energy consumption calculations in the following tables are based on the fol
 * Calculations are based on the SX1262 datasheet, Section 6.1.4: LoRa® Time-on-Air {{SX1262}}.
 * No LoRa concentrator RX calculations are provided because a LoRa concentrator is always receiving.
 * LoRa concentrator TX calculations are based on the SX1250 LoRa front-end with the SX1302 baseband processor.
+* Current consumption in TX and RX mode is based on "typical" numbers provided in the respective datasheets
+
+    * Leaf Node: {{SX1262}}
+    * Concentrator: {{SX1250}} + {{SX1302}}
 
 These premises are selected in the context of this contribution to
 reflect best-case scenarios wherever possible.
