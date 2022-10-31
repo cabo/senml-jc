@@ -11,9 +11,11 @@ author:
 - name: Brendan Moran
   organization: Arm Limited
   email: brendan.moran.ietf@gmail.com
+  country: UK
 - name: Henk Birkholz
   organization: Fraunhofer SIT
   email: henk.birkholz@sit.fraunhofer.de
+  country: Germany
 - name: Carsten Bormann
   org: Universität Bremen TZI
   street: Postfach 330440
