@@ -199,9 +199,9 @@ reflect best-case scenarios wherever possible.
 Regardless, most impacts scale proportionally with encoding size
 reduction.
 
-Due to channel utilization, there are secondary energy consumption
+Due to network utilization, there are secondary energy consumption
 impacts that are caused by larger data encodings: as network
-utilization increases, stronger channel contention causes more
+utilization increases, stronger media access congestion causes more
 re-transmissions as well as exercises congestion control mechanisms,
 which in practice are typically more expensive.
 A need for additional concentrators may arise as a consequence, which
@@ -313,7 +313,7 @@ Using a rather crude simplification, messages can be separated in their 'scaffol
 * CBOR should be used for conveyance-related structures, while
   'human-readability', if needed, should be off-loaded to higher layer
   tools.
-* CBOR should always be used where stable semantics exist that are
+* CBOR should always be used where stable semantics exist that
   can benefit from CBOR's built-in extensibility.
 * Where the data format in question is dominated by other data, e.g.,
   a couple of kilobytes metadata for a video that takes hundreds of
