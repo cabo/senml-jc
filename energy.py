@@ -98,7 +98,7 @@ def main(energy_type):
             rows.append(r)
 
     # print('LoRa leaf-node Receive Energy(mJ)')
-    print('| {:>20} | {:>5} | {:>5} | {:>5} | {}'.format(*header))
+    print('| {:>20} | {:>5} | {:>5} | {:>5} | {:>5}'.format(*header[1:]))
     lora_rows = size2mJ(rows,{
         'leaf-rx':energy_lora_rx,
         'leaf-tx':energy_lora_tx,
