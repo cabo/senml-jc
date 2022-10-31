@@ -116,7 +116,7 @@ As a result, analysis based on a single IoT networking protocol
 provides adequate reference information for analyzing the impact of
 encoding on energy consumption and throughput.
 
-# Impact of encoding based on data-type
+# Impact of Encoding Based on Data-Type
 
 Different data types can have different encoding impacts.
 
@@ -228,7 +228,7 @@ See {{calc}} for the method used to arrive at these numbers.
 {::include lora-tx-concentrator.md}
 {: #lora-tx-concentrator title="LoRa concentrator Transmit Energy (mJ)"}
 
-## Indirect Impacts of higher energy use.
+## Indirect Impacts of Higher Energy Use.
 
 LoRa nodes are frequently arranged to transmit data periodically, for example, every 10 minutes. This contribution is based on the assumption of using a coin-cell powered LoRa node that is designed to report a message containing either a JSON structure or a CBOR structure each time it wakes up. LoRa has a maximum packet size of 255 bytes. Two detailed examples are illustrated below; they are based on data from examples ex2 and ex3.
 
@@ -256,7 +256,7 @@ This means that batteries or devices using CBOR to send data from
 example ex2 last 33% longer than those using JSON, contributing to
 less e-waste and battery waste.
 
-### LoRa reports with data from example ex3
+### LoRa reports with Data from Example ex3
 
 Each report is 293 bytes for JSON or 195 bytes for CBOR. From the LoRa leaf-node Transmit Energy table, this means that each report consumes 74 mJ for JSON or 46.9 mJ for CBOR.
 This example is interesting because the CBOR payload fits in one LoRa packet, while the JSON payload requires two. This means that the CBOR is both smaller overall and has a lower media access overhead.
