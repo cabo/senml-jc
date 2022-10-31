@@ -198,7 +198,7 @@ impacts that are caused by larger data encodings: as network
 utilization increases, stronger channel contention causes more
 re-transmissions as well as exercises congestion control mechanisms,
 which in practice are typically more expensive.
-A need for additional concentrators may result as a consequence, which
+A need for additional concentrators may arise as a consequence, which
 can result in further increases in energy consumption.
 
 ## LoRa Energy Consumption Values for Data from Examples
