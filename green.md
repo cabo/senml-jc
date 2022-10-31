@@ -24,6 +24,7 @@ author:
   email: cabo@tzi.org
 
 informative:
+  RFC2119:
   RFC8428:
   RFC9193:
   RFC8890:
@@ -77,7 +78,7 @@ textual representations in any scenario where textual representation
 does not confer specific benefits.
 In general, this is only the case where the entire content is predominantly text.
 Data compression technologies are not discussed in this memo; they can
-offer additional size benefits but their use also can increase
+offer additional size benefits, but their use also can increase
 memory and processing requirements and overall complexity.
 
 # Comparison of Encodings
@@ -160,7 +161,7 @@ A summary of encoding sizes is provided in {{encoding-sizes}}.
 {::include table.md}
 {: #encoding-sizes title="Summary of Encoding Sizes for Example Data"}
 
-# LoRa energy consumption
+# LoRa Energy Consumption
 
 The LoRa configuration used in the following analysis is based on
 using the SX1262 chip as the leaf node and SX1302 + SX1250 as the LoRa
@@ -199,6 +200,18 @@ re-transmissions as well as exercises congestion control mechanisms,
 which in practice are typically more expensive.
 A need for additional concentrators may result as a consequence, which
 can result in further increases in energy consumption.
+
+## LoRa Energy Consumption Values for Data from Examples
+
+Tables {{<lora-rx-leaf}}, #{{<lora-tx-leaf}}, and #{{<lora-tx-concentrator}}
+show energy consumption estimates for energy needed to receive and
+energy needed to transmit on a lead node, as well as energy needed to
+transmit on a concentrator node.
+The numbers given are for JSON representation, CBOR representation,
+and CBOR representation with half-size floating point values; the
+reduction ("red.") shown is conservatively derived between JSON and
+CBOR representation without these more compact floating point values.
+See {{calc}} for the method used to arrive at these numbers.
 
 {::include lora-rx-leaf.md}
 {: #lora-rx-leaf title="LoRa leaf-node Receive Energy (mJ)"}
@@ -256,16 +269,9 @@ This means that batteries or devices using CBOR to send example 3 data last 58% 
 
 The findings reported here provide arguments for using concise binary
 data representations in place of traditional text-based data formats.
-
-Whether these arguments are considered compelling depends on how
-compelling the counterarguments are.  Many developers consider
-JSON-based communication to be easier to debug than concise binary
-communication.
-In practice, non-trivial amounts of JSON need a tool to look at the
-data just as a tool is required to look at binary data.
-To strengthen the argument here, the findings documented need to be
+To strengthen these arguments, the findings documented need to be
 augmented with data from other parties and additional examples,
-preferably including real-world measurements of power consumed by 
+preferably including real-world measurements of power consumed by
 transmission, reception, encoding and decoding of messages.
 
 On the other hand, it should be clear from first principles that a
@@ -277,21 +283,38 @@ environments.
 Larger corpora of such messages need to be collected to obtain a
 quantitatively stronger statement.
 
-## cemetery
+In the end, whether these arguments are considered compelling depends on how
+compelling the counterarguments are.  Many developers consider
+JSON-based communication to be easier to debug than concise binary
+communication.
+In practice, non-trivial amounts of JSON need a tool to look at the
+data just as a tool is required to look at binary data.
 
-\[Text saved from above that didn't belong there]:
-When choosing an encoding, binary encodings should be selected for any data structure that is not primarily composed of textual data. Using a rather crude simplification, messages can be separated in their 'scaffolding' and the 'value payload' they transport. In most cases, the proportion of scaffold and values is another selection decision.
+In summary, for systems that operate under severe energy constraints,
+there are good reasons to select binary encodings by default.
 
+Specific situations that may push the decision into one direction or another include:
 
-..## Example preferences
-
-While many dualities exist between JSON-encoded data and CBOR-encoded data, there are some key examples where CBOR structures should clearly be used instead of their JSON counterparts.
-
-* COSE should always be preferred over JOSE
-* CBOR should be used for conveyance, while 'human-readability' should be off-loaded to higher layer tools
-* CBOR should always be used where stable semantics exist that are designed with built-in extensibility
-
-
+* Data that are intrinsically predominantly textual in nature may go
+  well with a textual representation format.
+  XML continues to be the preferred format for marking up text.
+<!-- ???
+Using a rather crude simplification, messages can be separated in their 'scaffolding' and the 'value payload' they transport. In most cases, the proportion of scaffold and values is another selection decision.
+ -->
+* Representation formats that deeply suffer from the limitations of
+  JSON should be replaced by CBOR-based ones; e.g., COSE should always
+  be preferred over JOSE.
+* CBOR should be used for conveyance-related structures, while
+  'human-readability', if needed, should be off-loaded to higher layer
+  tools.
+* CBOR should always be used where stable semantics exist that are
+  can benefit from CBOR's built-in extensibility.
+* Where the data format in question is dominated by other data, e.g.,
+  a couple of kilobytes metadata for a video that takes hundreds of
+  megabytes, the argument that binary data reduce representation sizes
+  may not be relevant; other features of CBOR such as its built-in
+  extensibility or its more sophisticated number model may still be
+  relevant arguments.
 
 # Conclusion
 
@@ -300,14 +323,17 @@ In direct comparison, the typical overhead introduced by a 'human-readable' repr
 A generic approach of establishing binary message transfer supported with tooling for human readability will provide resource savings and therefore constitutes a paramount near term goal.
 Future evaluation and large scale measurements are required to underpin and establish this as a principal approach.
 
-Internet Standards should use binary encoding as the primary choice. 'Human-readable' encodings should only be used where the nature of the encoded content is predominantly human-readable text.
+In summary, Internet Standards should use binary encoding as the primary choice.
+This is actually an {{RFC2119}} "SHOULD"; valid exceptions do exist,
+some of which have been discussed above.
 
 --- back
 
-# Lora Calculations
+# Lora Calculations {#calc}
 
 LoRa power consumption is calculated with the following equations:
 
+<!-- these totally break in TXT form, which we luckily don't need -->
 ~~~ math
 Energy = I \times V \times ToA
 ~~~
@@ -321,7 +347,7 @@ Where:
 ToA = \frac{2^{SF}}{BW}\times N_{symbol}
 ~~~
 
-Where: 
+Where:
 
 * SF: Spreading Factor (5 to 12)
 * BW: Bandwidth (in Hz)
